@@ -23,7 +23,7 @@ const intersections = (_arr) => {
 }
 
 module.exports = {
-    compare([str1, str2]) {      
+    stringCompare([str1, str2]) {      
         const firstFused = Array.from(split2(str1.replace(/\s+/g, ''))).concat(Array.from(split2(str2.replace(/\s+/g, ''))));
         const firstEval = intersections(firstFused) / unions(firstFused);
 
@@ -32,5 +32,9 @@ module.exports = {
 
         return (firstEval + secondEval) / 2;
     
+    },
+
+    stringMatch([str1, str2]) {
+
     }
 };
