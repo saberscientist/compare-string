@@ -22,6 +22,11 @@ const intersections = (_arr) => {
     return intersection.length;
 }
 
+const arrayCheck = (_arr) => {
+    for(x of _arr) {
+        if(!x || typeof x === "object") throw new Error("Could not parse an object.")
+    }
+}
 
 
 module.exports = class {
