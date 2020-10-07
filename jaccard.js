@@ -63,9 +63,9 @@ module.exports = {
         }
 
         if ((typeof str1 !== "string" || typeof str2 !== "string") && options.strict) throw new Error("Cannot compare non-strings."); else if ((typeof str1 !== "string" || typeof str2 !== "string") && !strict) return null;
-        const arr1 = tokenizer(str1.replace(/\s+/g, ""));
-        const arr2 = tokenizer(str2.replace(/\s+/g, ""));
-        return (intersections(arr1, arr2) /unions(arr1, arr2) * 5) + ((2 * intersections(arr1, arr2)) / (arr1.length + arr2.length) * 9) / 14
+        const arr1 = tokenizer(str1);
+        const arr2 = tokenizer(str2);
+        return (((intersections(arr1, arr2) / unions(arr1, arr2)) * 1) + (((2 * intersections(arr1, arr2)) / (arr1.length + arr2.length)) * 3)) / 4
     },
     //@returns String
 
@@ -78,14 +78,14 @@ module.exports = {
         if (typeof _str !== "string" && options.strict) throw new Error("String to find best match of must be a string."); else if (typeof _str !== "string" && !options.strict) return null;
 
         const ratings = [];
-        const str = _str.replace(/\s+/g, "");
-        for (let i = 0; i < array.length; i++) array[i] = array[i].replace(/\s+/g, "");
+        const str = _str
+        
 
         const arr1 = tokenizer(str)
 
         for (x of array) {
             const arr2 = tokenizer(x)
-            ratings.push([x, (((intersections(arr1, arr2) / unions(arr1, arr2)) * 2) + (((2 * intersections(arr1, arr2)) / (arr1.length + arr2.length)) * 3)) / 5])
+            ratings.push([x, (((intersections(arr1, arr2) / unions(arr1, arr2)) * 1) + (((2 * intersections(arr1, arr2)) / (arr1.length + arr2.length)) * 3)) / 4])
         }
         if (!ratings) return null;
         ratings.sort(([, rating1], [, rating2]) => rating2 - rating1)
