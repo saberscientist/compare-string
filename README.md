@@ -59,4 +59,4 @@ sorted: Array [
 ```
 
 # contributing
-See [CONTRIBUTING.md](https://github.com/saberscientist/compare-string/blob/next/CONTRIBUTING.MD) and the official repository link [here](https://github.com/saberscientist/compare-string)
+See [CONTRIBUTING.md](https://github.com/saberscientist/compare-string/blob/master/CONTRIBUTING.MD) and the official repository link [here](https://github.com/saberscientist/compare-string)
