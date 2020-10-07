@@ -27,15 +27,15 @@ const unions = (first, second) => {
   }
 
 const intersections = (first, second) => {
-    const val = [];
-    const _first = first.slice()
-    const _second = second.slice()
+    const value = [];
+    const __first = first.slice()
+    const __second = second.slice()
     
-    while(_first.length) {
-     const x = _first.shift()
-     if(_second.includes(x)) val.push(x)
+    while(__first.length) {
+     const x = __first.shift()
+     if(__second.includes(x)) value.push(x)
     }
-     return val.length;
+     return value.length;
    }
 
 const arrayCheck = (_arr) => {
@@ -51,8 +51,17 @@ module.exports = class {
         if (typeof strict !== "boolean") this.strict = true; else this.strict = strict;
     }
 
-    compareString([str1, str2]) {
+    compareString(str1, str2) {
         if ((typeof str1 !== "string" || typeof str2 !== "string") && this.strict) throw new Error("Cannot compare non-strings."); else if (typeof str1 !== "string" || typeof str2 !== "string" && !this.strict) return null;
-        return intersections(str1, str2) / unions(str1, str2)
+        const arr1 = splitter(str1)
+        const arr2 = splitter(str2)
+
+        console.log(arr1)
+        console.log(arr2)
+
+        console.log(unions(arr1, arr2))
+        console.log(intersections(arr1, arr2))
+
+        return intersections(arr1, arr2) / unions(arr1, arr2)
     }
 };
