@@ -1,7 +1,7 @@
 {
   "name": "compare-string",
   "version": "1.0.0",
-  "description": "Pure JS package that compares similarity of strings using a token-based implementation of Jaccard's Index. Can generally return faster, more accurate results than edit-distance based algorithms, such as Levenshtein Distance.",
+  "description": "Pure JS package that compares similarity of strings using a token-based combination of [Jaccard's Index](https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient) and [Sørensen–Dice Coefficient](https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient). Can generally return faster, more accurate results than edit-distance based algorithms, such as Levenshtein Distance.",
   "main": "jaccard.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

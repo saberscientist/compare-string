@@ -1,49 +1,60 @@
-function* split2(val) { let _int = 0; while ((_int * 2) < val.length) { yield val.slice(_int * 2, (_int + 1) * 2); _int++; } };
-
-const unions = (_arr) => {
-    const array = _arr.slice()
-    const unique = [];
-    const iterations = array.slice().length;
-    for (let i = 0; i < iterations; i++) {
-        const x = array.shift()
-        if (!array.includes(x)) { unique.push(x) }
+const splitter = (str) => {
+    let _int = 0;
+    const split = [];
+    for (let i = 0; i < str.length; i++) {
+        if (i + 2 <= str.length) {
+            const val = str.substring(i, i + 2);
+            split.push(val);
+        }
     }
-    return unique.length;
+    return split;
 }
 
-const intersections = (_arr) => {
-    const array = _arr.slice()
-    const intersection = [];
-    const iterations = array.slice().length;
-    for (let i = 0; i < iterations; i++) {
-        const x = array.shift();
-        if (array.includes(x) && !intersection.includes(x)) { intersection.push(x) }
+
+const unions = (first, second) => {
+    const val = [];
+   const _first = first.slice();
+   const _second = second.slice();
+   while(_first.length) {
+     const x = _first.shift();
+     if(!_second.includes(x) && !_first.includes(x)) val.push(x);
+   }
+    while(_second.length) {
+     const y = _second.shift();
+      if(!_second.includes(y) && !_first.includes(y)) val.push(y)
+    };
+    return val.length;
+  };
+
+const intersections = (first, second) => {
+    const value = [];
+    const __first = first.slice()
+    const __second = second.slice()
+    
+    while(__first.length) {
+     const x = __first.shift()
+     if(__second.includes(x)) value.push(x)
     }
-    return intersection.length;
-}
+     return value.length;
+   };
 
 const arrayCheck = (_arr) => {
-    for(x of _arr) {
-        if(!x || typeof x === "object" && this.strict) throw new Error("Could not parse an object."); else if(!x || typeof x === "object" && this.strict) return null;
+    for (x of _arr) {
+        if (!x || typeof x === "object" && this.strict) throw new Error("Could not parse an object."); else if (!x || typeof x === "object" && this.strict) return null;
     }
-}
+};
 
 
 module.exports = class {
 
     constructor({ strict }) {
-        if(typeof strict !== "boolean") this.strict = true; else this.strict = strict;
+        if (typeof strict !== "boolean") this.strict = true; else this.strict = strict;
     }
 
-    compareString([str1, str2]) {      
-        if((typeof str1 === "string" || typeof str2 === "string") && this.strict) throw new Error("Cannot compare non-strings."); else if(typeof str1 === "string" || typeof str2 === "string" && !this.strict) return null;
-
-        const firstFused = Array.from(split2(str1.replace(/\s+/g, ''))).concat(Array.from(split2(str2.replace(/\s+/g, ''))));
-        const firstEval = intersections(firstFused) / unions(firstFused);
-
-        const secondFused = str1.replace(/\s+/g, '').split('').concat(str2.replace(/\s+/g, '').split(''));
-        const secondEval = intersections(secondFused) / unions(secondFused);
-
-        return (firstEval + secondEval) / 2;
+    compareString(str1, str2) {
+        if ((typeof str1 !== "string" || typeof str2 !== "string") && this.strict) throw new Error("Cannot compare non-strings."); else if (typeof str1 !== "string" || typeof str2 !== "string" && !this.strict) return null;
+        const arr1 = splitter(str1.replace(/\s+/g, ''))
+        const arr2 = splitter(str2.replace(/\s+/g, ''))
+        return (intersections(arr1, arr2) / unions(arr1, arr2) + ((2 * intersections(arr1,arr2)) / (arr1.length + arr2.length))) / 2
     }
 };
