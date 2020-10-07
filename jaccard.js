@@ -65,7 +65,7 @@ module.exports = {
         if ((typeof str1 !== "string" || typeof str2 !== "string") && options.strict) throw new Error("Cannot compare non-strings."); else if ((typeof str1 !== "string" || typeof str2 !== "string") && !strict) return null;
         const arr1 = tokenizer(str1.replace(/\s+/g, ""));
         const arr2 = tokenizer(str2.replace(/\s+/g, ""));
-        return (2 * intersections(arr1, arr2)) / (arr1.length + arr2.length)
+        return (intersections(arr1, arr2) /unions(arr1, arr2) * 5) + ((2 * intersections(arr1, arr2)) / (arr1.length + arr2.length) * 9) / 14
     },
     //@returns String
 
@@ -85,7 +85,7 @@ module.exports = {
 
         for (x of array) {
             const arr2 = tokenizer(x)
-            ratings.push([x, ((2 * intersections(arr1, arr2)) / (arr1.length + arr2.length))])
+            ratings.push([x, (((intersections(arr1, arr2) / unions(arr1, arr2)) * 2) + (((2 * intersections(arr1, arr2)) / (arr1.length + arr2.length)) * 3)) / 5])
         }
         if (!ratings) return null;
         ratings.sort(([, rating1], [, rating2]) => rating2 - rating1)
