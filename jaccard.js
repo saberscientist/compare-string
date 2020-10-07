@@ -22,8 +22,22 @@ const intersections = (_arr) => {
     return intersection.length;
 }
 
-module.exports = {
-    compare([str1, str2]) {      
+const arrayCheck = (_arr) => {
+    for(x of _arr) {
+        if(!x || typeof x === "object" && this.strict) throw new Error("Could not parse an object."); else if(!x || typeof x === "object" && this.strict) return null;
+    }
+}
+
+
+module.exports = class {
+
+    constructor({ strict }) {
+        if(typeof strict !== "boolean") this.strict = true; else this.strict = strict;
+    }
+
+    compareString([str1, str2]) {      
+        if((typeof str1 === "string" || typeof str2 === "string") && this.strict) throw new Error("Cannot compare non-strings."); else if(typeof str1 === "string" || typeof str2 === "string" && !this.strict) return null;
+
         const firstFused = Array.from(split2(str1.replace(/\s+/g, ''))).concat(Array.from(split2(str2.replace(/\s+/g, ''))));
         const firstEval = intersections(firstFused) / unions(firstFused);
 
@@ -31,6 +45,5 @@ module.exports = {
         const secondEval = intersections(secondFused) / unions(secondFused);
 
         return (firstEval + secondEval) / 2;
-    
     }
 };
