@@ -22,9 +22,9 @@ const unions = (first, second) => {
     while(_second.length) {
      const y = _second.shift();
       if(!_second.includes(y) && !_first.includes(y)) val.push(y)
-    }
+    };
     return val.length;
-  }
+  };
 
 const intersections = (first, second) => {
     const value = [];
@@ -36,13 +36,13 @@ const intersections = (first, second) => {
      if(__second.includes(x)) value.push(x)
     }
      return value.length;
-   }
+   };
 
 const arrayCheck = (_arr) => {
     for (x of _arr) {
         if (!x || typeof x === "object" && this.strict) throw new Error("Could not parse an object."); else if (!x || typeof x === "object" && this.strict) return null;
     }
-}
+};
 
 
 module.exports = class {
