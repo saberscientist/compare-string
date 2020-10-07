@@ -1,4 +1,4 @@
-function splitter(str) {
+const splitter = (str) => {
     let _int = 0;
     const split = [];
     for (let i = 0; i < str.length; i++) {
@@ -11,16 +11,20 @@ function splitter(str) {
 }
 
 
-const unions = (_arr) => {
-    const array = _arr.slice()
-    const unique = [];
-    const iterations = array.slice().length;
-    for (let i = 0; i < iterations; i++) {
-        const x = array.shift()
-        if (!array.includes(x)) { unique.push(x) }
+const unions = (first, second) => {
+    const val = [];
+   const _first = first.slice();
+   const _second = second.slice();
+   while(_first.length) {
+     const x = _first.shift();
+     if(!_second.includes(x) && !_first.includes(x)) val.push(x);
+   }
+    while(_second.length) {
+     const y = _second.shift();
+      if(!_second.includes(y) && !_first.includes(y)) val.push(y)
     }
-    return unique.length;
-}
+    return val.length;
+  }
 
 const intersections = (first, second) => {
     const val = [];
@@ -29,9 +33,9 @@ const intersections = (first, second) => {
     
     while(_first.length) {
      const x = _first.shift()
-     if(second.includes(x)) val.push(x)
+     if(_second.includes(x)) val.push(x)
     }
-     return val;
+     return val.length;
    }
 
 const arrayCheck = (_arr) => {
@@ -48,9 +52,7 @@ module.exports = class {
     }
 
     compareString([str1, str2]) {
-        if ((typeof str1 === "string" || typeof str2 === "string") && this.strict) throw new Error("Cannot compare non-strings."); else if (typeof str1 === "string" || typeof str2 === "string" && !this.strict) return null;
-
-
-        return (firstEval + secondEval) / 2;
+        if ((typeof str1 !== "string" || typeof str2 !== "string") && this.strict) throw new Error("Cannot compare non-strings."); else if (typeof str1 !== "string" || typeof str2 !== "string" && !this.strict) return null;
+        return intersections(str1, str2) / unions(str1, str2)
     }
 };
