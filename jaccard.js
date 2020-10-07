@@ -45,6 +45,5 @@ module.exports = class {
         const secondEval = intersections(secondFused) / unions(secondFused);
 
         return (firstEval + secondEval) / 2;
-    
     }
 };
