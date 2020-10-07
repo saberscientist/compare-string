@@ -22,16 +22,17 @@ const unions = (_arr) => {
     return unique.length;
 }
 
-const intersections = (_arr) => {
-    const array = _arr.slice()
-    const intersection = [];
-    const iterations = array.slice().length;
-    for (let i = 0; i < iterations; i++) {
-        const x = array.shift();
-        if (array.includes(x) && !intersection.includes(x)) { intersection.push(x) }
+const intersections = (first, second) => {
+    const val = [];
+    const _first = first.slice()
+    const _second = second.slice()
+    
+    while(_first.length) {
+     const x = _first.shift()
+     if(second.includes(x)) val.push(x)
     }
-    return intersection.length;
-}
+     return val;
+   }
 
 const arrayCheck = (_arr) => {
     for (x of _arr) {
@@ -48,7 +49,7 @@ module.exports = class {
 
     compareString([str1, str2]) {
         if ((typeof str1 === "string" || typeof str2 === "string") && this.strict) throw new Error("Cannot compare non-strings."); else if (typeof str1 === "string" || typeof str2 === "string" && !this.strict) return null;
-        
+
 
         return (firstEval + secondEval) / 2;
     }
