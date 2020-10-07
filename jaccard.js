@@ -53,15 +53,8 @@ module.exports = class {
 
     compareString(str1, str2) {
         if ((typeof str1 !== "string" || typeof str2 !== "string") && this.strict) throw new Error("Cannot compare non-strings."); else if (typeof str1 !== "string" || typeof str2 !== "string" && !this.strict) return null;
-        const arr1 = splitter(str1)
-        const arr2 = splitter(str2)
-
-        console.log(arr1)
-        console.log(arr2)
-
-        console.log(unions(arr1, arr2))
-        console.log(intersections(arr1, arr2))
-
-        return intersections(arr1, arr2) / unions(arr1, arr2)
+        const arr1 = splitter(str1.replace(/\s+/g, ''))
+        const arr2 = splitter(str2.replace(/\s+/g, ''))
+        return (intersections(arr1, arr2) / unions(arr1, arr2) + ((2 * intersections(arr1,arr2)) / (arr1.length + arr2.length))) / 2
     }
 };
