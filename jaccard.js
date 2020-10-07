@@ -22,8 +22,17 @@ const intersections = (_arr) => {
     return intersection.length;
 }
 
-module.exports = {
-    stringCompare([str1, str2]) {      
+
+
+module.exports = class {
+
+    constructor({ strict }) {
+        if(typeof strict !== "boolean") this.strict = true; else this.strict = strict;
+    }
+
+    compareString([str1, str2]) {      
+        if((typeof str1 === "string" || typeof str2 === "string") && this.strict) throw new Error("Cannot compare non-strings.")
+
         const firstFused = Array.from(split2(str1.replace(/\s+/g, ''))).concat(Array.from(split2(str2.replace(/\s+/g, ''))));
         const firstEval = intersections(firstFused) / unions(firstFused);
 
@@ -32,9 +41,5 @@ module.exports = {
 
         return (firstEval + secondEval) / 2;
     
-    },
-
-    stringMatch([str1, str2]) {
-
     }
 };
