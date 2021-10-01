@@ -1,16 +1,25 @@
 {
   "name": "compare-string",
-  "version": "1.1.0",
+  "version": "2.0.1",
   "description": "Pure JS package that compares similarity of strings using a combination of Jaccard's Index and the Sørensen–Dice Coefficient. Can generally return much faster, more accurate results than edit-distance based algorithms",
   "main": "jaccard.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["string similarity", "compare string", "fast string match", "levenshtein edit distance", "string difference"],
+  "keywords": [
+    "string similarity",
+    "compare string",
+    "fast string match",
+    "levenshtein edit distance",
+    "string difference"
+  ],
   "author": "saberscientist",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/saberscientist/compare-string.git"
+  },
+  "dependencies": {
+    "esrever": "^0.2.0"
   }
 }
