@@ -1,4 +1,5 @@
 "use strict";
 const LCSHelper = require("./lib/lcs");
 const StringDiff = require("./lib/stringdiff");
-module.exports = {LCSHelper, StringDiff};
+const LineDiff = require("./lib/linediff");
+module.exports = {LCSHelper, StringDiff, LineDiff};
