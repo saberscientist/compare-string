@@ -6,11 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["string similarity", "compare string", "fast string match", "levenshtein edit distance", "string difference"],
+  "keywords": [
+    "string similarity",
+    "compare string",
+    "fast string match",
+    "levenshtein edit distance",
+    "string difference"
+  ],
   "author": "saberscientist",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/saberscientist/compare-string.git"
+  },
+  "dependencies": {
+    "esrever": "^0.2.0"
   }
 }
