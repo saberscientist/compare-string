@@ -2,4 +2,5 @@
 const LCSHelper = require("./lib/lcs");
 const StringDiff = require("./lib/stringdiff");
 const LineDiff = require("./lib/linediff");
-module.exports = {LCSHelper, StringDiff, LineDiff};
+const LevHelper = require("./lib/levenshtein");
+module.exports = {LCSHelper, StringDiff, LineDiff, LevHelper};
