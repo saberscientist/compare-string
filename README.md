@@ -3,7 +3,7 @@
 New documentation coming soon. **Currently undergoing major upgrade to version 2.0.1**, please be patient.
 ## Installation
 
-`npm i compare-string`
+*please don't install yet*
 
 ## Contributing
 
